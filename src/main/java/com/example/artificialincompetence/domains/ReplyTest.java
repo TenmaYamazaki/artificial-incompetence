@@ -29,7 +29,7 @@ public class ReplyTest {
     public void test2() {
         Reply reply = new Reply(1, 2, 3, "ドラえもん");
         int sum = 500 + 600;
-        String s = "not null";
+        String s = "Not null";
         
         
         assertThat(s, notNullValue());
