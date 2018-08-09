@@ -1,0 +1,14 @@
+CREATE TABLE adjectives (
+    id SERIAL PRIMARY KEY,
+    word VARCHAR(100) NOT NULL
+);
+CREATE TABLE nouns (
+    id SERIAL PRIMARY KEY,
+    word VARCHAR(100) NOT NULL
+);
+CREATE TABLE replys (
+    id SERIAL PRIMARY KEY,
+    adjective VARCHAR(100) NOT NULL,
+    noun VARCHAR(100) NOT NULL,
+    word VARCHAR(100) NOT NULL
+);

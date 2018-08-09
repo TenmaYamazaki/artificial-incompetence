@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.artificialincompetence.mappers.AiMapper">
+    <resultMap id="adjectivResultMap" type="com.example.artificialincompetence.domains.Adjective">
+        <result property="id" column="id" />
+        <result property="word" column="word" />
+    </resultMap>
+    <resultMap id="nounResultMap" type="com.example.artificialincompetence.domains.Noun">
+        <result property="id" column="id" />
+        <result property="word" column="word" />
+    </resultMap>
+    <resultMap id="replyResultMap" type="com.example.artificialincompetence.domains.Reply">
+        <result property="id" column="id" />
+        <result property="adjectiveId" column="adjective_id" />
+        <result property="nounId" column="noun_id" />
+        <result property="word" column="word" />
+        <collection property="adjective" ofType="com.example.artificialincompetence.domains.Adjective" resultMap="adjectivResultMap" columnPrefix="ad_" />
+        <collection property="noun" ofType="com.example.artificialincompetence.domains.Noun" resultMap="nounResultMap" columnPrefix="no_" />
+    </resultMap>
+    
+    <select id="allAdj" resultMap="adjectivResultMap">
+        SELECT * FROM adjectives ORDER BY id;
+    </select>
+    <select id="allNoun" resultMap="nounResultMap">
+        SELECT * FROM nouns ORDER BY id;
+    </select>
+    <select id="getRes" resultMap="replyResultMap">
+        SELECT r.adjective_id,
+               r.noun_id,
+               r.word,
+               a.id as ad_id,
+               a.word as ad_word,
+               n.id as no_id,
+               n.word as no_word
+        FROM   replys r
+        JOIN   adjectives a
+            ON r.adjective_id = a.id
+        JOIN   nouns n
+            ON r.noun_id = n.id
+        WHERE  r.adjective_id = #{adjective}
+           AND r.noun_id = #{noun}
+    </select>
+    <insert id="addRes">
+        INSERT INTO replys(adjective_id, noun_id, word) VALUES(#{adjective}, #{noun}, #{restext});
+    </insert>
+    <insert id="addAdjectiveWord">
+        INSERT INTO adjectives(word) VALUES(#{wordtext});
+    </insert>
+    <insert id="addNounWord">
+        INSERT INTO nouns(word) VALUES(#{wordtext});
+    </insert>
+</mapper>
