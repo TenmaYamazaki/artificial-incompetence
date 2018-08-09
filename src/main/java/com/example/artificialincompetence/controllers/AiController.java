@@ -61,7 +61,8 @@ public class AiController {
                                             "<input type=\"hidden\" value=\"" + noun + "\" id=\"noun\" name=\"noun\">" +
                                             "<input id=\"addrestext\" name=\"addrestext\" type=\"text\" id=\"reply\" name=\"reply\" placeholder=\"質問の答えを入力してね\" />\r\n" + 
                                             "<input id=\"addressubmit\" type=\"submit\" value=\"決定\" />\r\n" + 
-                                        "</form>");
+                                        "</form>"
+                                        + "<p>※入力しない場合は一度ページを更新してください（鋭意修正中）");
                return reply;
             }
         }
