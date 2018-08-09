@@ -15,6 +15,12 @@ public class Reply {
     public Reply(int i, int j, String k, int l, String n, int m, String o) {
         
     }
+    public Reply(int id, int adjectiveId, int nounId, String word) {
+        this.id = id;
+        this.adjectiveId = adjectiveId;
+        this.nounId = nounId;
+        this.word = word;
+    }
     public int getId() {
         return id;
     }
